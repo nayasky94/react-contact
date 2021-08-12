@@ -33,6 +33,21 @@ export default class Contact extends React.Component {
         this.handleEdit = this.handleEdit.bind(this);
     }
 
+    componentWillMount(){
+        console.log(JSON.parse(localStorage.contactData));
+        if(localStorage.contactData){
+            this.setState({
+                contactData: JSON.parse(localStorage.contactData)
+            });
+        }
+    }
+
+    componentDidUpdate(preProps, preState){
+        if(preState.contactData !== this.state.contactData){
+            localStorage.contactData = JSON.stringify(this.state.contactData);
+        }
+    }
+
     handleChange(e){
         this.setState({
             keyword: e.target.value
@@ -99,7 +114,7 @@ export default class Contact extends React.Component {
                     placeholder="search"
                     value={this.state.keyword}
                     onChange={this.handleChange}
-                    />
+                />
                 <div>{mapToComponents(this.state.contactData)}</div>
                 <ContactDetails isSelected={this.state.selectedKey !== -1}
                                 contact={this.state.contactData[this.state.selectedKey]}
