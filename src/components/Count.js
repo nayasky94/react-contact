@@ -28,16 +28,27 @@ class Count extends Component {
 
         const color = this.props.color;
         const style = {
-            background: `rgb(${color[0]}, ${color[1]}, ${color[2]})`
+            background: `rgb(${color[0]}, ${color[1]}, ${color[2]})`,
+            height:'100px'
         }
         return(
-            <div style={style}>
-                <Value number={this.props.number}/>
-                <Control
-                    onPlus={this.props.handleIncrement}
-                    onSubtract={this.props.handleDecrement}
-                    onRandom={this.setRandomColor}
-                />
+            <div>
+                <div style={style}>
+                    <Value number={this.props.number}/>
+                </div>
+                <div>
+                    <Value number={this.props.number}/>
+                </div>
+                <div style={style}>
+                    
+                </div>
+                <div>
+                    <Control
+                        onPlus={this.props.handleIncrement}
+                        onSubtract={this.props.handleDecrement}
+                        onRandom={this.setRandomColor}
+                    />
+                </div>
             </div>
         );
     }
